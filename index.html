@@ -9,7 +9,9 @@
 <meta property="og:site_name" content="keda">
 <meta property="og:title" content="AI로 만들고 캔바로 완성하는 카드뉴스 · 실습 페이지">
 <meta property="og:description" content="문구 → 이미지 → 매직 레이어 → 블로그 올리기까지, 이 페이지 하나로 따라 해요.">
-<meta property="og:image" content="img/sample1_cafe.jpg">
+<meta property="og:url" content="https://dongwn1212.github.io/cardnews/">
+<meta property="og:image" content="https://dongwn1212.github.io/cardnews/img/sample1_cafe.jpg">
+<meta name="twitter:card" content="summary_large_image">
 <link rel="preconnect" href="https://cdn.jsdelivr.net">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css">
 <style>
@@ -529,6 +531,7 @@ footer a{color:var(--sub)}
     <span class="ptag">오늘 수고하셨어요</span>
     <h2>AI는 초안, 마무리는 내가.</h2>
     <p class="desc" style="margin:0">이 페이지 주소를 즐겨찾기 해 두면, 집에서도 언제든 다시 따라 할 수 있어요.<br>궁금한 점은 언제든 질문 주세요!</p>
+    <p class="desc" style="margin:12px 0 0;font-size:14px">🔒 적은 내용은 이 컴퓨터에만 저장되고 다른 사람에게는 보이지 않아요. 빌린 노트북이라면 PART 2의 <b>[모두 지우기]</b>를 눌러 주세요.</p>
   </div>
 
   <footer>
@@ -641,7 +644,7 @@ $("#fillEx").addEventListener("click", () => {
 });
 $("#clearAll").addEventListener("click", () => {
   ["b1","b2","b3","b4","b5","t1","t2","st","pic","news"].forEach(k => delete S.f[k]);
-  S.edit = {}; save(); $$("[data-save]").forEach(el => el.value = S.f[el.id] || ""); render(); toast("모두 지웠어요");
+  S.edit = {}; S.c = {}; ["h_t2","h_s2","h_t3","h_s3","h_t4","h_s4"].forEach(k => delete S.f[k]); save(); $$("[data-save]").forEach(el => el.value = S.f[el.id] || ""); $$(".checks li").forEach(li => li.classList.remove("on")); homeFields(); progress(); render(); toast("모두 지웠어요");
 });
 // 집에서 해 보기 탭
 function homeFields() {
