@@ -91,7 +91,7 @@ function loop(now){const dt=Math.min(40,now-last)/16.67;last=now;
    else draw(spr.wow,fall.x,fall.y)}
  }
  ctx.restore();
- if(typeof popT!=='undefined'&&popT>0){popT-=dt;ctx.fillStyle='#E4572E';ctx.font=`900 ${Math.round(W*0.07)}px sans-serif`;ctx.textAlign='center';ctx.fillText(pop,W/2,H*0.175)}
+ if(typeof popT!=='undefined'&&popT>0){popT-=dt;ctx.fillStyle='#E4572E';ctx.font=`900 ${Math.round(W*0.07)}px sans-serif`;ctx.textAlign='center';ctx.fillText(pop,W/2,H*0.42)}
  requestAnimationFrame(loop)}
 let pop='',popT=0;pickLv(lv);reset();requestAnimationFrame(loop);   // 10/24 고침: 시작 전에 stack이 없어 첫 화면에서 그림 그리기가 멈추던 문제 → 미리 reset()
 // ?demo=7 → 저절로 7마리 쌓고 8번째에 와르르 (확인·릴스 녹화용)
