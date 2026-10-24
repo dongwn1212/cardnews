@@ -1,0 +1,84 @@
+<!doctype html><html lang="ko"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
+<title>깜빠뉴 쌓기</title>
+<style>
+html,body{margin:0;height:100%;background:#FCF8F0;overflow:hidden;font-family:"Pretendard","Apple SD Gothic Neo","Malgun Gothic",sans-serif;touch-action:manipulation;-webkit-user-select:none;user-select:none}
+#wrap{position:relative;height:100%;max-width:540px;margin:0 auto}
+canvas{display:block;width:100%;height:100%}
+#hud{position:absolute;top:18px;left:0;right:0;text-align:center;pointer-events:none}
+#score{font-size:56px;font-weight:900;color:#1E1A16}
+#best{font-size:15px;color:#807870;margin-top:2px}
+#over,#start{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;background:rgba(252,248,240,.92)}
+#over{background:rgba(252,248,240,.62)}
+#over{display:none}
+h1{margin:0 0 6px;font-size:34px;color:#1E1A16}
+p{margin:4px 0;color:#5a524a;font-size:16px;line-height:1.5}
+.big{font-size:26px;font-weight:800;color:#E4572E;margin:10px 0}
+button{margin-top:18px;border:0;background:#1E1A16;color:#fff;font-size:18px;font-weight:700;padding:14px 34px;border-radius:999px}
+.tag{margin-top:14px;font-size:14px;color:#807870}
+</style></head><body><div id="wrap"><canvas id="c"></canvas>
+<div id="hud"><div id="score">0</div><div id="best"></div></div>
+<div id="start"><canvas id="logo" width="176" height="176"></canvas><h1>깜빠뉴 쌓기</h1><p>흔들리는 깜빠뉴를 톡! 눌러 떨어뜨려요.<br>삐뚤게 쌓으면 와르르~</p><button id="go">시작</button><div class="tag">@corgi.kampanu</div></div>
+<div id="over"><h1 id="otitle">와르르~</h1><div class="big" id="ores"></div><p id="omsg"></p><button id="again">다시 하기</button><div class="tag">캡처해서 @corgi.kampanu 태그해 줘! 🐾</div></div>
+</div>
+<script>
+const F={"base": ["..KK..............KK..", ".KBBK............KBBK.", ".KBPBK..........KBPBK.", ".KBPPBK........KBPPBK.", ".KBBBBBKKKKKKKKBBBBBK.", "..KBBBBBBBWWBBBBBBBK..", "..KBBBBBBBWWBBBBBBBK..", ".KBBBKKBBWWWWBBKKBBBK.", ".KBBBKKBWWWWWWBKKBBBK.", ".KBBBBBWWWKKWWWBBBBBK.", ".KBPBBWWWWKKWWWWBBPBK.", "..KBBWWWWWWWWWWWWBBK..", "...KKWWWWWWWWWWWWKK...", "....KKKKKKKKKKKKKK....", "...KBBBBBBBBBBBBBBK...", "..KBBBDBBBBDBBBBDBBK..", ".KBBBBBDBBBBDBBBBDBBK.", ".KBBBBBBBBBBBBBBBBBBK.", ".KBBBBBBBBBBBBBBBBBBK.", "..KBBBBBBBBBBBBBBBBK..", "...KKWWKKKKKKKKWWKK...", "....KKK........KKK...."], "happy": ["..KK..............KK..", ".KBBK............KBBK.", ".KBPBK..........KBPBK.", ".KBPPBK........KBPPBK.", ".KBBBBBKKKKKKKKBBBBBK.", "..KBBBBBBBWWBBBBBBBK..", "..KBBBBBBBWWBBBBBBBK..", ".KBBBKKBBWWWWBBKKBBBK.", ".KBBKBBKWWWWWWKBBKBBK.", ".KBBBBBWWWKKWWWBBBBBK.", ".KBPBBWWWWKKWWWWBBPBK.", "..KBBWWWKWWWWKWWWBBK..", "...KKWWWWKRRKWWWWKK...", "....KKKKKKKKKKKKKK....", "...KBBBBBBBBBBBBBBK...", "..KBBBDBBBBDBBBBDBBK..", ".KBBBBBDBBBBDBBBBDBBK.", ".KBBBBBBBBBBBBBBBBBBK.", ".KBBBBBBBBBBBBBBBBBBK.", "..KBBBBBBBBBBBBBBBBK..", "...KKWWKKKKKKKKWWKK...", "....KKK........KKK...."], "wow": ["..KK..............KK..", ".KBBK............KBBK.", ".KBPBK..........KBPBK.", ".KBPPBK........KBPPBK.", ".KBBBBBKKKKKKKKBBBBBK.", "..KBBBBBBBWWBBBBBBBK..", "..KBBKKBBBWWBBBKKBBK..", ".KBBBKKBBWWWWBBKKBBBK.", ".KBBBKKBWWWWWWBKKBBBK.", ".KBBBBBWWWKKWWWBBBBBK.", ".KBPBBWWWWKKWWWWBBPBK.", "..KBBWWWWWKKWWWWWBBK..", "...KKWWWWWKKWWWWWKK...", "....KKKKKKKKKKKKKK....", "...KBBBBBBBBBBBBBBK...", "..KBBBDBBBBDBBBBDBBK..", ".KBBBBBDBBBBDBBBBDBBK.", ".KBBBBBBBBBBBBBBBBBBK.", ".KBBBBBBBBBBBBBBBBBBK.", "..KBBBBBBBBBBBBBBBBK..", "...KKWWKKKKKKKKWWKK...", "....KKK........KKK...."], "sad": ["..KK..............KK..", ".KBBK............KBBK.", ".KBPBK..........KBPBK.", ".KBPPBK........KBPPBK.", ".KBBBBBKKKKKKKKBBBBBK.", "..KBBBBBBBWWBBBBBBBK..", "..KBKBBKBBWWBBKBBKBK..", ".KBBBKKBBWWWWBBKKBBBK.", ".KBBBKKBWWWWWWBKKBBBK.", ".KBBBBBWWWKKWWWBBBBBK.", ".KBPBBWWWWKKWWWWBBPBK.", "..KBBWWWWKWWKWWWWBBK..", "...KKWWWWKKKKWWWWKK...", "....KKKKKKKKKKKKKK....", "...KBBBBBBBBBBBBBBK...", "..KBBBDBBBBDBBBBDBBK..", ".KBBBBBDBBBBDBBBBDBBK.", ".KBBBBBBBBBBBBBBBBBBK.", ".KBBBBBBBBBBBBBBBBBBK.", "..KBBBBBBBBBBBBBBBBK..", "...KKWWKKKKKKKKWWKK...", "....KKK........KKK...."]}, PAL={"K": "rgb(24,22,20)", "W": "rgb(255,255,255)", "B": "rgb(226,168,92)", "D": "rgb(166,104,46)", "P": "rgb(247,170,170)", "R": "rgb(232,96,96)", "S": "rgb(120,170,220)"};
+const N=22; // 깜빠뉴 22칸
+function sprite(face,cell){const c=document.createElement('canvas');c.width=c.height=N*cell;const g=c.getContext('2d');
+ F[face].forEach((r,y)=>[...r].forEach((ch,x)=>{if(ch!=='.'){g.fillStyle=PAL[ch];g.fillRect(x*cell,y*cell,cell,cell)}}));return c}
+const cv=document.getElementById('c'),ctx=cv.getContext('2d');ctx.imageSmoothingEnabled=false;
+let W,H,S,CELL,spr={};
+function resize(){const r=cv.getBoundingClientRect(),d=Math.min(2,window.devicePixelRatio||1);cv.width=r.width*d;cv.height=r.height*d;W=cv.width;H=cv.height;
+ CELL=Math.max(2,Math.floor(W/N/6))   /* 10/24 대표님 "훨씬 작게, 위로 공간이 생겨야" → 화면 폭의 약 1/6 */;S=N*CELL;for(const k in F)spr[k]=sprite(k,CELL);ctx.imageSmoothingEnabled=false}
+addEventListener('resize',resize);resize();
+document.getElementById('logo').getContext('2d').drawImage(sprite('happy',8),0,0);
+// 몸통 판정 폭 = 귀·몸 빼고 가운데 16칸 정도
+const HIT=()=>S*0.72, STEP=()=>S*0.86;     // 위로 쌓이는 높이 (10/24 대표님 "얼굴이 바뀐 얼굴이 아닌 것 같아" → 0.62는 위 깜빠뉴 몸이 아래 얼굴을 가려서, 귀 끝만 살짝 겹치게)
+let stack,cur,fall,score,best=+(localStorage.kpStackBest||0),camY,camT,state='start',t0=0,swing,speed,wob;
+function reset(){stack=[{x:W/2,face:'base'}];score=0;camY=camT=0;speed=1.6;wob=0;newCur();fall=null;upd()}
+function newCur(){cur={t:Math.random()*6,face:'base'}}
+function curX(){const amp=W*0.32;return W/2+Math.sin(cur.t)*amp}
+function baseY(i){return H*0.86-i*STEP()}
+function upd(){document.getElementById('score').textContent=score;document.getElementById('best').textContent=best?('최고 '+best+'마리'):''}
+function drop(){if(state!=='play'||fall)return;fall={x:curX(),y:H*0.25+camY,vy:0,face:'wow'}}
+function tap(e){if(e)e.preventDefault();if(state==='play')drop()}
+cv.addEventListener('pointerdown',tap);addEventListener('keydown',e=>{if(e.code==='Space')tap(e)});
+document.getElementById('go').onclick=()=>{document.getElementById('start').style.display='none';state='play';reset()};
+document.getElementById('again').onclick=()=>{document.getElementById('over').style.display='none';state='play';reset()};
+function gameOver(){state='over';if(score>best){best=score;localStorage.kpStackBest=best}upd();
+ const msg=score>=20?'전설의 빵탑! 제빵사도 깜짝 놀람':score>=10?'노릇노릇 빵탑 완성!':score>=5?'제법인데? 한 번 더!':'깜빠뉴가 아직 졸려요… 다시!';
+ document.getElementById('ores').textContent='깜빠뉴 '+score+'마리 쌓았다!';document.getElementById('omsg').textContent=msg;
+ setTimeout(()=>document.getElementById('over').style.display='flex',700)}
+function draw(img,x,y,rot){ctx.save();ctx.translate(x,y);if(rot)ctx.rotate(rot);ctx.drawImage(img,-S/2,-S/2);ctx.restore()}
+let last=performance.now();
+function loop(now){const dt=Math.min(40,now-last)/16.67;last=now;
+ ctx.fillStyle='#FCF8F0';ctx.fillRect(0,0,W,H);
+ // 바닥 (빵집 진열대)
+ camY+=(camT-camY)*0.12*dt;
+ ctx.save();ctx.translate(0,camY);
+ ctx.fillStyle='#E8C496';ctx.fillRect(0,H*0.86+S*0.5,W,H);ctx.fillStyle='#1E1A16';ctx.fillRect(0,H*0.86+S*0.5,W,Math.max(3,CELL*0.6));
+ wob+=0.05*dt;
+ // 쌓인 깜빠뉴 (아래부터 그려서 위 깜빠뉴가 앞)
+ stack.forEach((b,i)=>{const sway=i?Math.sin(wob+i*0.4)*Math.min(8,score*0.35)*(i/stack.length)*CELL*0.15:0;draw(spr[b.face],b.x+sway,baseY(i))});
+ if(state==='play'){
+  if(!fall){cur.t+=0.035*speed*dt;const x=curX(),y=H*0.25-camY;
+   ctx.strokeStyle='#807870';ctx.lineWidth=Math.max(2,CELL*0.4);ctx.beginPath();ctx.moveTo(W/2,-camY);ctx.lineTo(x,y-S*0.45);ctx.stroke();
+   draw(spr.base,x,y)}
+  else{fall.vy+=1.1*dt;fall.y+=fall.vy*dt*W*0.0045;const top=stack[stack.length-1],ty=baseY(stack.length);
+   if(fall.dead){fall.rot+=0.08*dt*fall.dir;fall.x+=fall.dir*CELL*0.6*dt;draw(spr.sad,fall.x,fall.y,fall.rot);if(fall.y>H*1.3-camY)gameOver()}
+   else if(fall.y>=ty){const dx=fall.x-top.x;
+    if(Math.abs(dx)>HIT()*0.62){fall.dead=true;fall.rot=0;fall.dir=Math.sign(dx)||1}
+    else{const perfect=Math.abs(dx)<CELL*1.2;stack.forEach(b=>b.face='base');stack.push({x:perfect?top.x:fall.x,face:'happy'});
+     score++;upd();speed=Math.min(4,1.6+score*0.12);{const topY=baseY(stack.length-1);camT=Math.max(0,H*0.55-topY)}   /* 탑 꼭대기가 화면 55% 위로 올라오면 그만큼 화면을 내려 위쪽 공간 유지 */fall=null;newCur();
+     if(perfect){pop='딱 맞았다!';popT=40}}}
+   else draw(spr.wow,fall.x,fall.y)}
+ }
+ ctx.restore();
+ if(typeof popT!=='undefined'&&popT>0){popT-=dt;ctx.fillStyle='#E4572E';ctx.font=`900 ${Math.round(W*0.07)}px sans-serif`;ctx.textAlign='center';ctx.fillText(pop,W/2,H*0.255)}
+ requestAnimationFrame(loop)}
+let pop='',popT=0;reset();requestAnimationFrame(loop);   // 10/24 고침: 시작 전에 stack이 없어 첫 화면에서 그림 그리기가 멈추던 문제 → 미리 reset()
+// ?demo=7 → 저절로 7마리 쌓고 8번째에 와르르 (확인·릴스 녹화용)
+const DEMO=+(new URLSearchParams(location.search).get('demo')||0);
+if(DEMO){document.getElementById('go').click();setInterval(()=>{if(state!=='play'||fall)return;const d=curX()-stack[stack.length-1].x;
+ if(score<DEMO?Math.abs(d)<CELL*1.5:Math.abs(d)>HIT()*0.8)drop()},16)}
+</script></body></html>
