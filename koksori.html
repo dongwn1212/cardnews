@@ -584,7 +584,7 @@ body.noanim #circ.on{animation:pulse 1.6s ease-in-out infinite}
 
 <!-- 로그인 -->
 <div id="login" class="ov">
-  <div class="note">🔐 <b>비밀 닉네임 코드</b>는 직접 지어요<br>남들이 알아차리지 못하게! (한글만)<br><span style="font-size:13.5px;color:#ccc">참석 확정은 마을 안 🖋 참석의 방에서 '확신의 선서'로!</span></div>
+  <div class="note">🔐 <b>비밀 닉네임 코드</b>는 직접 지어요<br>남들이 알아차리지 못하게! (영어·기호·이모지 OK ♥)<br><span style="font-size:13.5px;color:#ccc">참석 확정은 마을 안 🖋 참석의 방에서 '확신의 선서'로!</span></div>
   <div class="bd" id="bd">
     <div class="tb"><span>🏸 콕소리운영대책위원회 로그인</span><i id="xclose">×</i></div>
     <div class="pic">
@@ -593,7 +593,7 @@ body.noanim #circ.on{animation:pulse 1.6s ease-in-out infinite}
       <div class="bb2">어서<br>와^^</div>
       <div class="rib">★♥★♥★♥★♥★♥★♥★♥★♥★♥★</div>
     </div>
-    <div class="lab">🔐 비밀 닉네임 코드<small>남들이 알아차리지 못하게 직접 지어 주세요 (한글만, 2~8자)</small></div>
+    <div class="lab">🔐 비밀 닉네임 코드<small>한글·영어·숫자·기호·이모지 OK (1~8자)<br><b style="white-space:nowrap">. $ # [ ] /</b> 는 안 돼요</small></div>
     <div class="row"><input id="cn" placeholder="예) 온수풀공듀" autocomplete="off" autocapitalize="off" spellcheck="false" enterkeyhint="go"><span class="cnt" id="cnt">0/8</span></div>
     <div class="chk"><label><input type="checkbox" checked disabled>자동로그인</label><label><input type="checkbox" id="keep" checked>닉네임 기억</label></div>
     <div id="msg"></div>
@@ -944,14 +944,18 @@ function saveMe(){try{if(!$('#keep')||$('#keep').checked)localStorage.setItem('k
 function openOv(id){$$('.ov').forEach(o=>o.classList.remove('on'));$('#chargo').style.display='none';$('#modal').hidden=true;
   if(id){$(id).classList.add('on');$(id).scrollTop=0;document.body.classList.add('lock');}else document.body.classList.remove('lock');}
 
-/* ===================== 로그인 (한글 비밀 닉네임 · IME 안전) ===================== */
-const HAN=/[^가-힣ㄱ-ㅎㅏ-ㅣ]/g, FULL=/^[가-힣]{2,8}$/;
+/* ===================== 로그인 (비밀 닉네임 · IME 안전) ===================== */
+/* NICK_1125 : 한글·영어·숫자·기호·이모지 OK · 보이는 글자 1~8 · 저장 16 code unit 이하 */
+const NICK_BAD=/[.$#\[\]\/\\<>\u0000-\u001f\u007f-\u009f\u200b\u200c\u200e\u200f\u202a-\u202e\u2060-\u206f\ufeff\ufff9-\ufffb]/, NICK_BADG=new RegExp(NICK_BAD.source,'g');
+function nickCut(v){let a=Array.from(v).slice(0,8);while(a.length&&a.join('').length>16)a.pop();return a.join('');}
+function nickClean(v){return nickCut(String(v||'').replace(NICK_BADG,'').replace(/\s+/g,' ').replace(/^ /,''));}
+function nickOK(n){return typeof n==='string'&&n===n.trim()&&n.length>=1&&n.length<=16&&Array.from(n).length<=8&&!/\s\s/.test(n)&&!NICK_BAD.test(n);}
 let composing=false;
 const cn=$('#cn');
 function cleanName(showMsg){
-  const v=cn.value, c=v.replace(HAN,'').slice(0,8);
-  if(c!==v){cn.value=c;if(showMsg)msg('한글만! (영어·숫자·기호·띄어쓰기 X)');}
-  $('#cnt').textContent=[...cn.value].length+'/8';
+  const v=cn.value, c=nickClean(v);
+  if(c!==v){cn.value=c;if(showMsg){msg(NICK_BAD.test(v)?'. $ # [ ] / \\ < > 는 못 써요!':(Array.from(v.replace(/\s+/g,' ')).length>8||v.length>16?'최대 8글자까지!':''));}}
+  $('#cnt').textContent=Array.from(cn.value).length+'/8';
 }
 function msg(t){$('#msg').textContent=t;}
 cn.addEventListener('compositionstart',()=>composing=true);
@@ -960,11 +964,11 @@ cn.addEventListener('input',e=>{if(composing||e.isComposing){$('#cnt').textConte
 cn.addEventListener('keydown',e=>{if(e.key==='Enter'&&!e.isComposing&&!composing){e.preventDefault();login();}});
 function openLogin(){ding();openOv('#login');cn.value=(me&&me.name)||'';cleanName(false);msg('');}
 $('#xclose').onclick=()=>{ding(440);openOv(null);};
-const WRONG={short:'2글자 이상 지어 줘~',jamo:'완성된 글자로! (ㅋㅋ, ㅇㅅㅇ 같은 자음만은 안 돼요)',empty:'비밀 닉네임부터 지어 줘!',dup:'이미 누가 쓰는 닉네임이야! 다른 걸로~'};
+const WRONG={short:'1~8글자로 지어 줘~ (. $ # [ ] / 는 안 돼요)',empty:'비밀 닉네임부터 지어 줘!',dup:'이미 누가 쓰는 닉네임이야! 다른 걸로~'};
 function bad(err){msg(WRONG[err]);const b=$('#bd');b.classList.remove('shake');void b.offsetWidth;b.classList.add('shake');ding(220);}
 async function login(){
-  cleanName(false);const n=cn.value.trim();
-  let err=null;if(!n)err='empty';else if(/[ㄱ-ㅎㅏ-ㅣ]/.test(n))err='jamo';else if(!FULL.test(n))err='short';
+  cleanName(false);const n=cn.value.trim();cn.value=n;
+  let err=null;if(!n)err='empty';else if(!nickOK(n))err='short';
   if(err)return bad(err);
   if(DB_URL){msg('닉네임 확인 중…');const c=await checkName(n,me&&me.id);msg('');if(c==='dup')return bad('dup');}
   ding(1046);
@@ -985,7 +989,7 @@ const LOBBY={
          ["👥 정원","선착순 12명 (이미 탑승 5명)"],["🚗 차량","4명당 1대 · 카풀 차고에 등록"],["💰 회비","미정 (인원 확정 후 공지)"],["🎒 준비물","미정 · 일단 수영복은 챙길 각"]],
   days:[{title:"DAY 1 · 1/9 (토)",items:[["미정","집결 & 차량 출발","탑승 조는 카풀 차고에서"],["미정","장보기",""],["미정","숙소 체크인 · 온수풀/사우나",""],["저녁","먹기 (메뉴 투표 예정)",""],["밤","콕대위 제1차 정기총회","콕소리 앞으로의 운영 (진지한 척 5분)"],["밤~새벽","레크리에이션 & 토킹","사실 이게 본 안건"]]},
         {title:"DAY 2 · 1/10 (일)",items:[["오전","기상 (가능하면)",""],["미정","체크아웃 · 해산",""]]}],
-  rules:["닉네임은 아무도 못 알아챌 한글 비밀 닉네임으로.","정체는 당일까지 숨긴다.","누가 오는지 밖에 말하지 않는다.","내 비밀 닉네임은 남에게 알려 주지 않는다."]
+  rules:["닉네임은 아무도 못 알아챌 비밀 닉네임으로. (영어·기호·이모지도 OK)","정체는 당일까지 숨긴다.","누가 오는지 밖에 말하지 않는다.","내 비밀 닉네임은 남에게 알려 주지 않는다."]
 };
 function hrand(a,b,c){let h=Math.imul(a,374761393)+Math.imul(b,668265263)+Math.imul(c,1442695041);h=Math.imul(h^(h>>>13),1274126177);return((h^(h>>>16))>>>0)/4294967296;}
 function shade(hex,amt){const n=parseInt(hex.slice(1),16);const f=v=>Math.max(0,Math.min(255,Math.round(amt<0?v*(1+amt):v+(255-v)*amt)));
@@ -1244,7 +1248,7 @@ function safeAv(a){if(!a||typeof a!=='object')return DEF_AV;const o={};
   for(const k in DEF_AV){const v=a[k];o[k]=(typeof v===typeof DEF_AV[k]&&String(v).length<=16)?v:DEF_AV[k];}
   if(!(o.skin>=0&&o.skin<SKINS.length))o.skin=1;return o;}
 function avOf(p){return p&&p.av?(p._sa||(p._sa=safeAv(p.av))):DEF_AV;}
-const nickOf=c=>String((c&&c.nick)||'?').slice(0,8);
+const nickOf=c=>nickCut(String((c&&c.nick)||'?'))||'?';
 // 다른 요원 : [id, 기록, 잠듦?]  · 2분 넘게 소식 없으면 잠듦(반투명) · 10분 넘으면 숨김
 function others(){const now=serverNow(),r=[];if(!me)return r;
   for(const [id,p] of Object.entries(S.players||{})){
