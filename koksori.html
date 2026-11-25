@@ -378,6 +378,17 @@ body.noanim #circ.on{animation:pulse 1.6s ease-in-out infinite}
 #town .hud .admb{display:inline-block;background:#ffd400;color:#6a1b00;border:2px solid #c2185b;border-radius:5px;font-size:10.5px;padding:0 4px;margin-right:4px;vertical-align:1px;line-height:1.35}
 #town #online{top:49px;font-size:10px;padding:2px 6px;line-height:13px;white-space:nowrap;border-radius:6px}
 #town #online .adm{box-shadow:none;padding:0 3px;line-height:13px;display:inline-block}
+
+/* ── KEY_1125 열쇠 코드 ── */
+.bd .kkey{border-top:2px groove #fff;padding:6px 12px 8px;text-align:center}
+.bd #keyB{font-family:inherit;font-size:14px;background:none;border:0;color:#1f4fa8;text-decoration:underline;cursor:pointer;padding:2px 4px}
+.bd #keyP{margin-top:4px;text-align:left}
+.bd #keyP small{display:block;font-size:13px;color:#555;padding:0 14px 2px;line-height:1.4}
+.bd #keyP .row input{font-family:monospace;font-size:17px;letter-spacing:.5px}
+.bd #kload{font-family:inherit;font-size:15px;padding:6px 10px;border:2px outset #fff;background:#ffe14d;color:#2b1f2e;font-weight:700;white-space:nowrap}
+.bd #kmsg{min-height:20px;text-align:center;font-size:14px;font-weight:700;color:#c00;padding:2px 10px;line-height:1.35}
+.bd #kmsg.ok{color:#1b7a3a}
+.devid .kd{display:block;color:#888;font-size:10px}
 .devid{margin-top:8px;padding-top:6px;border-top:1px dashed #ddd;font-size:10.5px;color:#999;line-height:1.5}
 .devid code{font-family:monospace;color:#666;user-select:all;-webkit-user-select:all}
 .devid button{font-family:inherit;font-size:10.5px;border:1px solid #bbb;background:#fff;border-radius:4px;padding:0 6px;margin-left:4px;color:#555}
@@ -613,6 +624,10 @@ body.noanim #circ.on{animation:pulse 1.6s ease-in-out infinite}
     <div id="msg"></div>
     <div class="bot"><div class="hrt" id="hrt">♥</div><button class="go" id="go">영원히 콕소리해^^</button></div>
     <div class="ft">코드·비번 없음. 내가 지은 닉네임만 쓰면 바로 입장 oo^^oo</div>
+    <div class="kkey"><button type="button" id="keyB">🔑 다른 브라우저에서 이어하기</button>
+      <div id="keyP" hidden><small>원래 쓰던 브라우저의 마을 <b>?</b> 버튼에 있는 <b>열쇠 코드</b>를 넣어 주세요</small>
+        <div class="row"><input id="kcode" placeholder="예) mwvs8sv3hhot" maxlength="24" autocomplete="off" autocapitalize="off" autocorrect="off" spellcheck="false" inputmode="text" enterkeyhint="go"><button type="button" id="kload">불러오기</button></div>
+        <div id="kmsg"></div></div></div>
   </div>
 </div>
 
@@ -976,7 +991,7 @@ cn.addEventListener('compositionstart',()=>composing=true);
 cn.addEventListener('compositionend',()=>{composing=false;cleanName(true);});
 cn.addEventListener('input',e=>{if(composing||e.isComposing){$('#cnt').textContent=[...cn.value].length+'/8';return;}msg('');cleanName(true);});
 cn.addEventListener('keydown',e=>{if(e.key==='Enter'&&!e.isComposing&&!composing){e.preventDefault();login();}});
-function openLogin(){ding();openOv('#login');cn.value=(me&&me.name)||'';cleanName(false);msg('');}
+function openLogin(){ding();openOv('#login');cn.value=(me&&me.name)||'';cleanName(false);msg('');{const p=$('#keyP');if(p){p.hidden=true;$('#kcode').value='';$('#kmsg').textContent='';}}}
 $('#xclose').onclick=()=>{ding(440);openOv(null);};
 const WRONG={short:'1~8글자로 지어 줘~ (. $ # [ ] / 는 안 돼요)',empty:'비밀 닉네임부터 지어 줘!',dup:'이미 누가 쓰는 닉네임이야! 다른 걸로~'};
 function bad(err){msg(WRONG[err]);const b=$('#bd');b.classList.remove('shake');void b.offsetWidth;b.classList.add('shake');ding(220);}
@@ -992,6 +1007,50 @@ async function login(){
   if(!me.av)KT.openChar('make');else KT.enter();
 }
 $('#go').onclick=login;$('#hrt').onclick=login;
+
+/* ===================== KEY_1125 : 열쇠 코드로 이어하기 ===================== */
+const KEY_RE=/^[a-z0-9]{6,24}$/;
+function keyLocal(){try{return JSON.parse(localStorage.getItem('kokl_keys')||'{}')||{};}catch(e){return {};}}
+function keyLocalSave(){if(DB_URL||!me||!me.id||!me.name)return;try{const K=keyLocal();K.players=K.players||{};K.names=K.names||{};
+  K.players[me.id]={nick:me.name,av:me.av};K.names[me.name]=me.id;localStorage.setItem('kokl_keys',JSON.stringify(K));}catch(e){}}
+// 읽기만 (쓰기 없음)
+async function keyGet(p){
+  if(!DB_URL){const K=keyLocal(),g=p.split('/');let o=K[g[0]];if(g[1]!==undefined)o=o?o[g[1]]:null;return o===undefined?null:o;}
+  const ac=new AbortController(),t=setTimeout(()=>ac.abort(),7000);
+  const r=await fetch(segURL(p),{signal:ac.signal});clearTimeout(t);if(!r.ok)throw new Error('http '+r.status);return r.json();}
+// 결과 : {nick,av,via} · 'none'(그런 코드 없음) · 'moved'(닉네임이 바뀌어 다른 사람이 씀)
+async function keyFind(c){
+  const p=await keyGet('players/'+c);
+  let nick=p&&typeof p.nick==='string'?p.nick:null;const av=p&&p.av&&typeof p.av==='object'?p.av:null;
+  if(nick&&(await keyGet('names/'+nick))!==c)nick=null;
+  if(!nick){const all=await keyGet('names');nick=all&&typeof all==='object'?(Object.keys(all).find(k=>all[k]===c)||null):null;
+    if(!nick)return p?'moved':'none';}
+  if(!nickOK(nick))return 'none';
+  return {nick,av,via:p?'player':'names'};
+}
+function kmsg(t,ok){const m=$('#kmsg');m.textContent=t;m.classList.toggle('ok',!!ok);}
+function keyClean(){const i=$('#kcode'),v=i.value,c=v.toLowerCase().replace(/[^a-z0-9]/g,'').slice(0,24);if(c!==v)i.value=c;}
+let keyBusy=false;
+async function keyLoad(){
+  if(keyBusy)return;keyClean();const c=$('#kcode').value;
+  if(!KEY_RE.test(c)){kmsg('열쇠 코드는 영어 소문자·숫자 6~24자예요');ding(220);return;}
+  if(me&&me.id===c){kmsg('이미 이 브라우저의 내 캐릭터예요 → 바로 입장!',true);setTimeout(()=>KT.enter(),600);return;}
+  keyBusy=true;kmsg('열쇠 코드 확인 중…',true);
+  let f;try{f=await keyFind(c);}catch(e){keyBusy=false;kmsg('연결이 안 돼요. 잠시 뒤 다시 눌러 주세요');ding(220);return;}
+  keyBusy=false;
+  if(f==='none'){kmsg('그런 열쇠 코드가 없어요. 다시 확인해 주세요');ding(220);return;}
+  if(f==='moved'){kmsg('이 코드의 닉네임이 바뀌었어요 (지금은 다른 요원이 써요). 원래 브라우저에서 확인해 주세요');ding(220);return;}
+  ding(1046);
+  me={name:f.nick,av:f.av?KT.safeAv(f.av):KT.safeAv(null),id:c};
+  try{localStorage.setItem('kokf_me',JSON.stringify(me));}catch(e){}
+  if($('#keep'))$('#keep').checked=true;
+  kmsg('🔑 '+f.nick+' 요원 불러오기 완료! 마을로 가요',true);
+  setTimeout(()=>{KT.enter();toast('🔑 '+f.nick+' 요원으로 이어하기!');},700);
+}
+$('#keyB').onclick=()=>{ding(660);const p=$('#keyP');p.hidden=!p.hidden;kmsg('');if(!p.hidden)setTimeout(()=>$('#kcode').focus(),50);};
+$('#kcode').addEventListener('input',()=>{kmsg('');keyClean();});
+$('#kcode').addEventListener('keydown',e=>{if(e.key==='Enter'&&!e.isComposing){e.preventDefault();keyLoad();}});
+$('#kload').onclick=keyLoad;
 
 /* ===================== 캐릭터 + 마을 ===================== */
 const KT=(()=>{
@@ -2401,7 +2460,7 @@ function HELP(welcome){
   return (welcome?'':'🗺 <b>콕소리 마을 사용법</b><br>')
     +(touch?'· 가고 싶은 곳을 <b>톡</b> 누르면 걸어가 (왼쪽 아래 ▲▼◀▶ 꾹 눌러도 OK)':'· <b>방향키 / WASD</b> 로 걷기 · 가고 싶은 곳을 <b>클릭</b>해도 걸어가')
     +'<br>· 건물 앞에 서면 안이 열려 (🖋 참석의 방 · 📅 일정 · 🚗 카풀 · ♨ 노천수다탕(자유 대화) · 📌 쪽지판 · ♨ 온수풀(뭐 하고 놀지) · 🔥 건식사우나(뭐 먹지) · 🎰 사설도박장(미니게임))<br>· 아래 💬 칸에 쓰면 내 머리 위 말풍선 + 모두에게 채팅<br>· 💃 채팅칸 위 <b>행동 버튼</b>을 누르면 내 캐릭터가 움직여! 공간마다 달라 (PC는 숫자키 1~7)<br>· 보라 이름표 <b>NPC</b> 5명 = 마을 단속반들. 누르면(PC는 옆에서 Enter) <b>1박 2일 요약</b> + 참가 확정 방법'
-    +(!welcome&&me&&me.id?`<div class="devid">내 기기 ID: <code>${esc(me.id)}</code><button type="button" id="cpid">복사</button></div>`:'');
+    +(!welcome&&me&&me.id?`<div class="devid">🔑 내 열쇠 코드: <code>${esc(me.id)}</code><button type="button" id="cpid">복사</button><span class="kd">다른 브라우저·다른 폰에서 이 코드로 내 캐릭터를 불러올 수 있어요. 남에게 알려 주지 마세요</span></div>`:'');
 }
 function enter(){
   if(!me||!me.av)return openChar('make');
@@ -2410,6 +2469,8 @@ function enter(){
   $('#hudName').textContent=me.name;$('#town .hud').classList.remove('adm');$('#hudDd').textContent='콕대위 1박2일 '+dday();drawTo($('#hudAv'),me.av);
   lastSave=0;refresh();
   NET.claimed=false;netPos=pl.x+','+pl.y+','+pl.dir;lastBeat=Date.now();if(DB_URL)claimMine();
+  keyLocalSave();
+  try{if(!localStorage.getItem('kokf_keyhint')){localStorage.setItem('kokf_keyhint','1');setTimeout(()=>{const e=$('#toast');toast('🔑 내 열쇠 코드는 오른쪽 위 ? 에서 확인!');clearTimeout(e._t);e._t=setTimeout(()=>e.classList.remove('on'),4500);},1800);}}catch(e){}
   if(!localStorage.getItem('kokf_seen')){localStorage.setItem('kokf_seen','1');sayBox(`▶ <b>${esc(me.name)}</b> 요원, 콕소리 마을에 온 걸 환영해!<br>`+HELP(true));}
 }
 if(matchMedia('(pointer:coarse)').matches||navigator.maxTouchPoints>0)$('#pad').hidden=false;
@@ -2418,7 +2479,7 @@ setInterval(()=>{if($('#town').classList.contains('on'))updOnline();},3000);
 startNet();
 requestAnimationFrame(loop);
 (document.fonts?document.fonts.load('12px Galmuri11'):Promise.resolve()).finally(()=>{if($('#char').classList.contains('on')&&kTab==='make')renderMake();});
-return {openChar,enter,pickSel,preset:i=>copyAv(PRESETS[i%PRESETS.length].av),count:()=>PRESETS.length,
+return {openChar,enter,pickSel,safeAv,preset:i=>copyAv(PRESETS[i%PRESETS.length].av),count:()=>PRESETS.length,
   pos:()=>({x:pl.x,y:pl.y,px:Math.round(pl.px),py:Math.round(pl.py),dir:pl.dir}),
   place:openPlace,chat:sendChat,setLog,play:()=>({view:CAS.view,rank:S.rank,talk:S.talk,champ:champ()}),act:doAct,acts:()=>({zone:curZone(),hd:myHd,mine:myAct.c,run:Object.entries(ACTRUN).map(([id,r])=>({id,c:r.c,ago:Math.round(serverNow()-r.t)})),log:ACTLOG.map(a=>a.text),bar:barList(curZone()).map(a=>a[0])}),dbgSet:(p,v)=>{if(!DB_URL){setLocal(p,v);changed();}},admin:()=>({me:!!(me&&isAdmin(me.id)),ids:Object.keys(S.admin||{})}),walk:(x,y)=>goTo(x,y,TRIG[x+','+y]||null),oath:()=>({n:oathN(),mine:myOath(),view:oathView}),net:()=>({live:NET.live,skew:NET.skew,claimed:NET.claimed,others:others().map(([id,p,sl])=>({id,nick:p.nick,x:p.x,y:p.y,sleep:sl})),npc:npcN(),id:me&&me.id}),
   scr:(tx,ty)=>[Math.round((tx*TS+8-camX)*VS),Math.round((ty*TS+8-camY)*VS)],open:()=>openId};
