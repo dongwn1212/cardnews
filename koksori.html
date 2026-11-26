@@ -778,7 +778,7 @@ body.noanim #circ.on{animation:pulse 1.6s ease-in-out infinite}
 const DB_URL = /[?&]db=local(&|$)/.test(location.search) ? '' : 'https://koksori-default-rtdb.asia-southeast1.firebasedatabase.app';   // ?db=local → 이 기기에만 저장 (시험용)
 // 운영자 구글 로그인 (Firebase 콘솔 → 프로젝트 설정 → 웹 앱의 apiKey·appId) · 비어 있으면 '운영자 로그인 준비 중'
 const FIREBASE_CONFIG = {apiKey:'AIzaSyD5BmIveiHmt8CPgHwngYnIEeKhmOq4q0M', authDomain:'koksori.firebaseapp.com', projectId:'koksori', databaseURL:'https://koksori-default-rtdb.asia-southeast1.firebasedatabase.app', appId:'1:12117558469:web:c55df706f5f80653641cac'};
-const ADMIN_UID = '';   // 운영자 구글 계정 UID (운영자의 방에서 로그인하면 화면에 뜸)
+const ADMIN_UID = 'WVi0w0RfSygaYsBKdjAILw0RQN83';   // 운영자 구글 계정 UID (운영자의 방에서 로그인하면 화면에 뜸)
 
 /* NETFIX_1125 : /kok/<키>.json 스트림 여러 개 → /kok.json 스트림 1개 (브라우저 '한 서버당 연결 6개' 한도 때문에 쓰기가 멈추던 문제) */
 (function(){
