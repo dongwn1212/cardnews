@@ -527,6 +527,54 @@ body.noanim #circ.on{animation:pulse 1.6s ease-in-out infinite}
 #modal .spc img{width:78%;height:78%;object-fit:contain;image-rendering:pixelated;pointer-events:none}
 #modal .spc.ok{background:#7ee08a;border-color:#1b7a2b}
 #modal .spc.bad{background:#ff8a96}
+
+/* GUESTADMIN_1126 ── 📖 방명록 · 📮 건의함 · 👑 운영자의 방 ── */
+#modal .gbsum{font-size:16px;text-align:center;background:#fff4c2;border:3px solid #2b1f2e;border-radius:12px;padding:8px 8px 10px;margin:0 0 6px;line-height:1.5}
+#modal .gbsum small{display:block;font-size:12px;color:#666}
+#modal .gbsum b{color:#c2185b;font-size:24px}
+#modal .gbchips{display:flex;flex-wrap:wrap;gap:6px}
+#modal .gbchip{background:#fff;border:2px solid #2b1f2e;border-radius:14px;padding:3px 9px;font-size:13.5px;max-width:100%;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+#modal .gbchip.me{background:#ffe14d}
+#modal .gbchip small{color:#888;margin-left:3px;font-size:11px}
+#modal .gbrow{display:flex;align-items:center;gap:8px;background:#fff;border:2px solid #2b1f2e;border-radius:9px;padding:6px 9px;margin:5px 0;font-size:14px}
+#modal .gbrow.me{background:#fffbe0}
+#modal .gbrow .n{flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;font-weight:bold}
+#modal .gbrow small{color:#666;font-size:11.5px;text-align:right;flex:none;line-height:1.35}
+#modal .gbnew{background:#22b14c;color:#fff;border-radius:6px;font-size:10px;padding:1px 5px;margin-left:4px;font-weight:normal;vertical-align:1px}
+#modal .gb0{color:#888;text-align:center;font-size:13px;margin:10px 0}
+#modal .gbft{font-size:11px;color:#888;margin:10px 0 0;line-height:1.5}
+#modal .gbk{color:#7a5cff}
+#modal .sgf label{display:block;font-size:13.5px;font-weight:bold;margin:10px 0 4px}
+#modal .sgf label em{font-style:normal;color:#c2185b;font-size:11.5px;font-weight:normal;margin-left:4px}
+#modal .sgf input{width:100%;box-sizing:border-box;font-family:inherit;font-size:16px;padding:9px;border:2px solid #2b1f2e;border-radius:8px;background:#fff}
+#modal .sgf input.bad,#modal .sgf textarea.bad{border-color:#e8384f;background:#fff0f2}
+#modal .sgm{min-height:20px;font-size:13.5px;font-weight:bold;color:#c00;text-align:center;margin:6px 0 4px}
+#modal .sgm.ok{color:#1b7a3a}
+#modal .sgb{width:100%;padding:12px;font-size:16px;margin-bottom:8px}
+#modal .sgb[disabled]{opacity:.5}
+#modal .sgdone{text-align:center;font-size:16px;line-height:1.7;background:#eafbe9;border:3px solid #2b1f2e;border-radius:12px;padding:18px 10px;margin:4px 0 10px}
+#modal .sgdone small{color:#555;font-size:12.5px}
+#modal .arlog{background:#2b1f2e;color:#fff;border-radius:10px;padding:10px 12px;font-size:13.5px;line-height:1.65}
+#modal .arlog small{color:#d9cfe8;font-size:12px}
+#modal .arlog .mbtn{margin-top:8px;width:100%;padding:11px;font-size:15px}
+#modal .arlog button:not(.mbtn){font-family:inherit;font-size:12px;border:2px solid #fff;background:#5a3d8a;color:#fff;border-radius:7px;padding:2px 8px;margin-left:4px}
+#modal .arlog code{background:#fff;color:#2b1f2e;padding:1px 4px;border-radius:4px;word-break:break-all;font-size:12px}
+#modal .arerr{color:#ffb3b3;font-weight:bold;margin-top:4px}
+#modal .arsg{background:#fff;border:2px solid #2b1f2e;border-radius:9px;padding:7px 9px;margin:6px 0;font-size:14px}
+#modal .arsg .h{font-size:12px;color:#666;display:flex;justify-content:space-between;align-items:center;gap:6px}
+#modal .arsg .h b{color:#2b1f2e;font-size:14px}
+#modal .arsg .t{white-space:pre-wrap;word-break:break-all;margin-top:4px;line-height:1.45}
+#modal .arsg button,#modal .ara2 button{font-family:inherit;font-size:11.5px;border:2px solid #2b1f2e;background:#fff0f2;color:#b51f35;border-radius:7px;padding:2px 7px;flex:none}
+#modal .ara2{display:flex;flex-wrap:wrap;gap:6px;align-items:center;margin:4px 0}
+#modal .ara2 span{background:#fff;border:2px solid #2b1f2e;border-radius:14px;padding:2px 8px;font-size:13px}
+#modal .armem{background:#fff;border:2px solid #2b1f2e;border-radius:9px;padding:6px 9px;margin:5px 0;font-size:14px;line-height:1.45}
+#modal .armem .n{font-weight:bold;display:flex;justify-content:space-between;gap:6px}
+#modal .armem .n span{overflow:hidden;text-overflow:ellipsis;white-space:nowrap;min-width:0}
+#modal .armem .n em{font-style:normal;font-weight:normal;font-size:12px;flex:none}
+#modal .armem small{display:block;color:#666;font-size:11.5px}
+#modal .armem code{font-size:11.5px;background:#f1ecf7;padding:0 3px;border-radius:3px;word-break:break-all}
+#modal .aro{color:#1b7a3a}#modal .arx{color:#b5401f}
+#modal .arcnt{color:#888;font-weight:normal;font-size:12px}
 </style>
 </head>
 <body>
@@ -728,6 +776,9 @@ body.noanim #circ.on{animation:pulse 1.6s ease-in-out infinite}
 /* ===================== 설정 ===================== */
 // 모두가 서로의 아이콘을 보려면 Firebase 실시간 DB 주소를 넣는다 (비어 있으면 이 폰에만 저장)
 const DB_URL = /[?&]db=local(&|$)/.test(location.search) ? '' : 'https://koksori-default-rtdb.asia-southeast1.firebasedatabase.app';   // ?db=local → 이 기기에만 저장 (시험용)
+// 운영자 구글 로그인 (Firebase 콘솔 → 프로젝트 설정 → 웹 앱의 apiKey·appId) · 비어 있으면 '운영자 로그인 준비 중'
+const FIREBASE_CONFIG = {apiKey:'AIzaSyD5BmIveiHmt8CPgHwngYnIEeKhmOq4q0M', authDomain:'koksori.firebaseapp.com', projectId:'koksori', databaseURL:'https://koksori-default-rtdb.asia-southeast1.firebasedatabase.app', appId:'1:12117558469:web:c55df706f5f80653641cac'};
+const ADMIN_UID = '';   // 운영자 구글 계정 UID (운영자의 방에서 로그인하면 화면에 뜸)
 
 /* NETFIX_1125 : /kok/<키>.json 스트림 여러 개 → /kok.json 스트림 1개 (브라우저 '한 서버당 연결 6개' 한도 때문에 쓰기가 멈추던 문제) */
 (function(){
@@ -975,9 +1026,9 @@ document.addEventListener('click',e=>{if(e.target.closest('.go2')){e.stopPropaga
 let me=null;try{me=JSON.parse(localStorage.getItem('kokf_me')||'null');}catch(e){}
 const NET={live:false,state:'off',skew:0,claimed:false};
 const SV={'.sv':'timestamp'};
-const S={players:{},chat:{},memo:{},cars:{},oath:{},admin:{}};
+const S={players:{},chat:{},memo:{},cars:{},oath:{},admin:{},admin2:{}};
 const ADM='👑[운영자] ';
-function isAdmin(id){return !!(id&&S.admin&&typeof S.admin==='object'&&S.admin[id]===true);}
+function isAdmin(id){if(!id)return false;const a2=S.admin2&&typeof S.admin2==='object'?S.admin2:null;if(a2&&Object.keys(a2).some(k=>a2[k]===true))return a2[id]===true;return !!(S.admin&&typeof S.admin==='object'&&S.admin[id]===true);}
 function admSpan(el,id,nick){if(isAdmin(id)){const a=document.createElement('span');a.className='adm';a.textContent=ADM+nick;el.appendChild(a);}else el.appendChild(document.createTextNode(nick));}
 const segURL=p=>DB_URL+'/kok/'+p.split('/').map(encodeURIComponent).join('/')+'.json';
 function serverNow(){return Date.now()+NET.skew;}
@@ -1394,7 +1445,7 @@ function startNet(){
   if(!DB_URL||typeof EventSource==='undefined'){updOnline();return;}
   NET.state='connecting';
   const Q2={chat:'?orderBy=%22%24key%22&limitToLast=50'};
-  ['players','chat','memo','cars','oath','admin'].forEach(key=>{
+  ['players','chat','memo','cars','oath','admin','admin2'].forEach(key=>{
     const es=new EventSource(DB_URL+'/kok/'+key+'.json'+(Q2[key]||''));
     const on=type=>e=>{let m;try{m=JSON.parse(e.data);}catch(_){return;}
       if(!m||typeof m.path!=='string')return;
@@ -1499,13 +1550,14 @@ const BLD=[
 ];
 BLD.forEach(b=>{for(let y=b.y;y<b.y+b.h;y++)for(let x=b.x;x<b.x+b.w;x++)solid[y][x]=b.id;});
 const POOL={x:20,y:14,w:7,h:5}; for(let y=14;y<=18;y++)for(let x=20;x<=26;x++)solid[y][x]='pool';
-const OBJ=[{t:'board',x:11,y:9,w:2,id:'board'},{t:'snowman',x:17,y:9},{t:'pole',x:11,y:8},{t:'pole',x:18,y:8},{t:'lamp',x:11,y:16},{t:'lamp',x:18,y:16},{t:'car',x:25,y:8,w:2},{t:'bigtree',x:14,y:10,w:2,h:2}];
+const OBJ=[{t:'board',x:11,y:9,w:2,id:'board'},{t:'snowman',x:17,y:9},{t:'pole',x:11,y:8},{t:'pole',x:18,y:8},{t:'lamp',x:11,y:16},{t:'lamp',x:18,y:16},{t:'car',x:25,y:8,w:2},{t:'bigtree',x:14,y:10,w:2,h:2},{t:'gbook',x:16,y:21,w:2,id:'guest'},{t:'sbox',x:13,y:21,id:'suggest'},{t:'admdoor',x:18,y:22,id:'admroom'}];
 OBJ.forEach(o=>{for(let dy=0;dy<(o.h||1);dy++)for(let dx=0;dx<(o.w||1);dx++)solid[o.y+dy][o.x+dx]=o.id||true;});
 const TRIG={};
 BLD.forEach(b=>b.trig.forEach(([x,y])=>TRIG[x+','+y]=b.id));
 [[11,10],[12,10]].forEach(([x,y])=>TRIG[x+','+y]='board');
+[[16,22],[17,22]].forEach(([x,y])=>TRIG[x+','+y]='guest');TRIG['13,22']='suggest';TRIG['18,23']='admroom';
 for(let x=21;x<=25;x++)TRIG[x+',19']='pool';
-const PLACE={sched:'📅 일정의 집',car:'🚗 카풀 차고',chat:'♨ 노천수다탕',board:'📌 쪽지판',pool:'♨ 온수풀',oath:'🖋 참석의 방',dry:'🔥 건식사우나',casino:'🎰 사설도박장'};
+const PLACE={sched:'📅 일정의 집',car:'🚗 카풀 차고',chat:'♨ 노천수다탕',board:'📌 쪽지판',pool:'♨ 온수풀',oath:'🖋 참석의 방',dry:'🔥 건식사우나',casino:'🎰 사설도박장',guest:'📖 방명록',suggest:'📮 건의함',admroom:'👑 운영자의 방'};
 const walk=(x,y)=>x>=0&&y>=0&&x<MW&&y<MH&&!solid[y][x];
 
 /* 정적 그림 (한 번만 그림) */
@@ -1584,6 +1636,9 @@ function drawMap(){
     if(o.t==='board'){r(X+4,Y+8,3,8,'#6b4426');r(X+25,Y+8,3,8,'#6b4426');r(X+1,Y-4,30,15,'#5a3b2a');r(X+2,Y-3,28,13,'#c8935a');r(X+5,Y-1,8,9,'#ffffff');r(X+16,Y-2,10,6,'#fff2a8');r(X+17,Y+5,7,4,'#ffd6e8');r(X+8,Y-2,2,2,'#e8384f');r(X+20,Y-3,2,2,'#3f48cc');r(X+1,Y-5,30,2,'#ffffff');}
     if(o.t==='snowman'){r(X+3,Y+6,10,9,'#ffffff');r(X+2,Y+8,12,5,'#ffffff');r(X+5,Y,6,7,'#ffffff');r(X+4,Y+1,8,5,'#ffffff');r(X+6,Y+2,1,1,'#222');r(X+9,Y+2,1,1,'#222');r(X+7,Y+4,3,1,'#ff7f27');r(X+4,Y+6,8,2,'#e8384f');r(X+10,Y+7,2,4,'#e8384f');r(X+5,Y-4,6,4,'#2b2b3a');r(X+4,Y-1,8,1,'#2b2b3a');r(X+7,Y+9,1,1,'#222');r(X+7,Y+12,1,1,'#222');
       m.strokeStyle='rgba(120,140,170,.5)';m.lineWidth=1;m.strokeRect(X+2.5,Y+8.5,11,5);}
+    if(o.t==='gbook'){r(X+14,Y+4,4,11,'#6b4426');r(X+9,Y+13,14,3,'#4a3020');r(X+2,Y-7,28,12,'#7a2e1f');r(X+2,Y-8,28,2,'#ffffff');r(X+4,Y-5,11,9,'#fffdf6');r(X+17,Y-5,11,9,'#fffdf6');r(X+15,Y-6,2,11,'#4a1a10');for(let i=0;i<3;i++){r(X+6,Y-3+i*2,7,1,'#9aa6b8');r(X+19,Y-3+i*2,7,1,'#9aa6b8');}r(X+26,Y-10,2,6,'#3f48cc');r(X+27,Y-11,1,2,'#ffffff');}
+    if(o.t==='sbox'){r(X+6,Y+9,4,7,'#3a3f4a');r(X+5,Y+14,6,2,'#2b2f38');r(X+2,Y-9,12,19,'#e8384f');r(X+3,Y-11,10,2,'#e8384f');r(X+12,Y-9,2,19,'#b51f35');r(X+2,Y-12,12,2,'#ffffff');r(X+4,Y-5,8,2,'#2b1f2e');r(X+5,Y-7,6,2,'#fffdf6');r(X+4,Y+1,8,6,'#fffdf6');r(X+6,Y+3,4,2,'#e8384f');}
+    if(o.t==='admdoor'){r(X,Y-11,16,27,'#ffd400');r(X+2,Y-9,12,25,'#3b2a55');r(X+3,Y-7,10,21,'#5a3d8a');r(X+4,Y-5,8,7,'#6b4fa0');r(X+4,Y+4,8,8,'#6b4fa0');r(X+10,Y+2,2,2,'#ffd400');r(X,Y-12,16,1,'#ffffff');r(X+3,Y-17,10,5,'#ffd400');r(X+3,Y-19,2,2,'#ffd400');r(X+7,Y-20,2,3,'#ffd400');r(X+11,Y-19,2,2,'#ffd400');r(X+7,Y-16,2,2,'#e8384f');r(X+6,Y+8,4,4,'#c0c4cc');r(X+7,Y+6,2,2,'#c0c4cc');}
     if(o.t==='pole'){r(X+6,Y-18,4,34,'#6b4426');r(X+5,Y-20,6,3,'#ffd34d');r(X+6,Y+14,4,2,'#4a3020');}
     if(o.t==='lamp'){r(X+7,Y-8,3,24,'#3a3f4a');r(X+4,Y-14,9,7,'#3a3f4a');r(X+5,Y-13,7,5,'#ffe48a');r(X+4,Y-15,9,2,'#ffffff');r(X+5,Y+14,7,2,'#2b2f38');}
     if(o.t==='car'){r(X+2,Y+3,28,10,'#e8384f');r(X+7,Y-2,17,7,'#e8384f');r(X+9,Y-1,6,5,'#bfe9ff');r(X+17,Y-1,6,5,'#bfe9ff');r(X+2,Y+7,28,1,'#b51f35');r(X+27,Y+5,3,2,'#ffe48a');r(X+5,Y+11,6,6,'#222');r(X+21,Y+11,6,6,'#222');r(X+7,Y+13,2,2,'#999');r(X+23,Y+13,2,2,'#999');r(X+7,Y-3,17,2,'#ffffff');}
@@ -1827,6 +1882,7 @@ function render(t){
   BLD.forEach(b=>pill(b.label,(b.x+b.w/2)*TS,b.y*TS+4,'#fffdf6',OL,13));
   pill('♨ 온수풀',(POOL.x+POOL.w/2)*TS,POOL.y*TS+2,'#fffdf6',OL,13);
   pill('📌 쪽지판',12*TS,9*TS-6,'#fff4c2',OL,11);
+  pill('📖 방명록',17*TS,21*TS-8,'#fff4c2',OL,11);pill('📮 건의함',13.5*TS,21*TS-12,'#ffe3e6',OL,11);pill('👑 운영자',18.5*TS,22*TS-21,'#3b2a55','#ffd400',10);
   { const [sx,sy]=S2(14.5*TS+4,8*TS-11); ctx.font=`bold ${Math.max(10,VS*3.4)}px Galmuri11,sans-serif`;ctx.fillStyle='#fff';ctx.textAlign='center';ctx.textBaseline='middle';ctx.fillText('HAPPY NEW YEAR 2027 ✦ 콕소리',sx,sy); }
   labels.forEach(l=>{
     ctx.globalAlpha=l.alpha||1;
@@ -1936,6 +1992,9 @@ function openPlace(id){
   }
   if(id==='oath')openOath();
   if(id==='car')renderCars();
+  if(id==='guest')openGuest();
+  if(id==='suggest')openSuggest();
+  if(id==='admroom')openAdmRoom();
 }
 
 /* ===================== OATH_LIVE_1125 · 🖋 참석의 방 (/kok/oath/{내 id}) ===================== */
@@ -2695,6 +2754,231 @@ GPLAY.spot=function(ga,end){
   round();
   gI(()=>{const left=Math.max(0,D-(performance.now()-T0));$('#gl').textContent='⏱ '+(left/1000).toFixed(1)+'초';if(left<=0&&!fin){fin=true;end(sc);}},50);
 };
+
+/* ===================== GUESTADMIN_1126 · 📖 방명록 · 📮 건의함 · 👑 운영자의 방 ===================== */
+const GA_SIM=!DB_URL&&Q.get('admsim')==='1';
+const GA_TEN=600000, GA_DAY=/^20\d\d-\d\d-\d\d$/, SG_NAME=/^[가-힣a-zA-Z ]{1,10}$/;
+const kstDay=t=>new Date(t+324e5).toISOString().slice(0,10);
+const dayMD=d=>GA_DAY.test(d||'')?(+d.slice(5,7))+'/'+(+d.slice(8,10)):'-';
+const dayWk=d=>'일월화수목금토'[new Date(d+'T12:00:00Z').getUTCDay()];
+// 시험판(?db=local) 저장소
+function gaL(){try{return JSON.parse(localStorage.getItem('kokl_gb')||'{}')||{};}catch(e){return {};}}
+function gaLGet(p){let o=gaL();for(const k of p.replace(/^\//,'').split('/')){if(!o||typeof o!=='object')return null;o=o[k];}return o===undefined?null:o;}
+function gaLSet(p,v){const L=gaL(),g=p.replace(/^\//,'').split('/');let o=L;for(let i=0;i<g.length-1;i++){if(!o[g[i]]||typeof o[g[i]]!=='object')o[g[i]]={};o=o[g[i]];}
+  if(v===null)delete o[g[g.length-1]];else o[g[g.length-1]]=v;try{localStorage.setItem('kokl_gb',JSON.stringify(L));}catch(e){}}
+const gaSv=v=>JSON.parse(JSON.stringify(v),(k,x)=>x&&typeof x==='object'&&x['.sv']?serverNow():x);
+if(!DB_URL){const a=gaLGet('kok/admin2');if(a&&typeof a==='object')S.admin2=a;}
+// 경로 : 'visits/..' = /kok/visits/.. · '/koksuggest' = 맨 위 칸
+const gaPath=p=>p.charAt(0)==='/'?p.slice(1):'kok/'+p;
+const gaURL=(p,tok)=>DB_URL+'/'+gaPath(p).split('/').map(encodeURIComponent).join('/')+'.json'+(tok?'?auth='+encodeURIComponent(tok):'');
+async function gaGet(p,tok){
+  if(!DB_URL)return gaLGet(gaPath(p));
+  const ac=new AbortController(),t=setTimeout(()=>ac.abort(),8000);
+  try{const r=await fetch(gaURL(p,tok),{signal:ac.signal});if(!r.ok)throw new Error('http '+r.status);return await r.json();}finally{clearTimeout(t);}
+}
+async function gaPut(p,v,tok){
+  if(!DB_URL){gaLSet(gaPath(p),v===null?null:gaSv(v));return true;}
+  try{const r=await fetch(gaURL(p,tok),v===null?{method:'DELETE'}:{method:'PUT',body:JSON.stringify(v)});return r.ok;}catch(e){return false;}
+}
+async function gaPost(p,v){
+  if(!DB_URL){const k='-L'+Date.now().toString(36)+Math.random().toString(36).slice(2,6);gaLSet(gaPath(p)+'/'+k,gaSv(v));return true;}
+  try{const r=await fetch(gaURL(p),{method:'POST',body:JSON.stringify(v)});return r.ok;}catch(e){return false;}
+}
+
+/* ---------- 📖 입장 기록 (10분 안 재입장은 1회) ---------- */
+let gaBusy=false;
+async function gbVisit(tr){
+  tr=tr||0;if(!me||!me.id||!me.name||gaBusy)return;gaBusy=true;let ok=true;
+  try{
+    const now=serverNow(),day=kstDay(now),vp='visits/'+day+'/'+me.id,gp='guest/'+me.id;
+    const v=await gaGet(vp);
+    if(!v||typeof v!=='object'||typeof v.n!=='number')ok=await gaPut(vp,{nick:me.name,n:1,first:SV,last:SV});
+    else if(now-(+v.last||0)>=GA_TEN+5000)ok=await gaPut(vp,{nick:me.name,n:v.n+1,first:v.first,last:SV});
+    const g=await gaGet(gp);let ok2=true;
+    if(!g||typeof g!=='object'||typeof g.days!=='number')ok2=await gaPut(gp,{nick:me.name,firstDay:day,lastDay:day,days:1});
+    else if(g.lastDay!==day)ok2=await gaPut(gp,{nick:me.name,firstDay:g.firstDay,lastDay:day,days:g.days+1});
+    else if(g.nick!==me.name)ok2=await gaPut(gp,{nick:me.name,firstDay:g.firstDay,lastDay:g.lastDay,days:g.days});
+    ok=ok&&ok2;
+  }catch(e){ok=false;}
+  gaBusy=false;
+  if(!ok&&tr<2)setTimeout(()=>gbVisit(tr+1),4000);
+  if(openId==='guest')gbLoad();
+}
+
+/* ---------- 📖 방명록 창 ---------- */
+let GB={day:'',v:null,g:null,err:false},gbTick=0;
+function openGuest(){openId='guest';
+  openModal('📖 콕소리 마을 방명록','<div id="gbBody"><p class="gb0">방명록 펼치는 중… 📖</p></div>');
+  gbLoad();clearInterval(gbTick);gbTick=setInterval(()=>{if(openId!=='guest'){clearInterval(gbTick);return;}gbLoad();},20000);}
+async function gbLoad(){
+  const day=kstDay(serverNow());
+  try{const [v,g]=await Promise.all([gaGet('visits/'+day),gaGet('guest')]);GB={day,v:v&&typeof v==='object'?v:{},g:g&&typeof g==='object'?g:{},err:false};}
+  catch(e){GB.err=true;GB.day=day;}
+  if(openId==='guest')gbRender();
+}
+const gbNick=(id,n)=>(isAdmin(id)?'👑':'')+nickCut(String(n||'?'))||'?';
+function gbRender(){
+  const el=$('#gbBody');if(!el)return;
+  if(GB.err&&!GB.v){el.innerHTML='<p class="gb0">연결이 안 돼요. 잠시 뒤 다시 열어 주세요 🔌</p>';return;}
+  const V=Object.entries(GB.v||{}).filter(([,r])=>r&&typeof r==='object'&&typeof r.n==='number'&&typeof r.nick==='string').sort((a,b)=>(a[1].first||0)-(b[1].first||0));
+  const tot=V.reduce((a,[,r])=>a+Math.max(0,Math.min(999,r.n|0)),0);
+  const G=Object.entries(GB.g||{}).filter(([,r])=>r&&typeof r==='object'&&typeof r.nick==='string'&&GA_DAY.test(r.lastDay||'')&&GA_DAY.test(r.firstDay||''))
+    .sort((a,b)=>b[1].lastDay.localeCompare(a[1].lastDay)||(((GB.v[b[0]]||{}).first)||0)-(((GB.v[a[0]]||{}).first)||0)||a[1].firstDay.localeCompare(b[1].firstDay));
+  const mine=me&&me.id;
+  let h=`<div class="gbsum"><small>📅 오늘 ${dayMD(GB.day)} (${dayWk(GB.day)})</small>오늘 입장 <b>${tot}</b>회 · 오늘 <b>${V.length}</b>명</div>`;
+  h+=`<h3>🙋 오늘 다녀간 멤버 <span class="arcnt">(${V.length}명 · 먼저 온 순)</span></h3>`;
+  h+=V.length?'<div class="gbchips">'+V.map(([id,r])=>`<span class="gbchip${id===mine?' me':''}">${esc(gbNick(id,r.nick))}<small>${r.n>1?'×'+(r.n|0):''}</small></span>`).join('')+'</div>':'<p class="gb0">아직 오늘 온 사람이 없어요</p>';
+  h+=`<h3>📜 지금까지 다녀간 멤버 <span class="arcnt">(${G.length}명 · 최근 순)</span></h3>`;
+  h+=G.length?G.map(([id,r])=>`<div class="gbrow${id===mine?' me':''}"><span class="n">${esc(gbNick(id,r.nick))}${r.lastDay===GB.day?'<span class="gbnew">오늘</span>':''}</span><small>처음 온 날 ${dayMD(r.firstDay)}<br>${Math.max(1,r.days|0)}일 방문 · 마지막 ${dayMD(r.lastDay)}</small></div>`).join(''):'<p class="gb0">아직 기록이 없어요</p>';
+  h+='<p class="gbft">※ 마을에 들어올 때마다 자동으로 적혀요 · 10분 안에 다시 들어오면 1번으로 세요<br>※ 방명록(닉네임·다녀간 날)은 마을 사람 모두가 볼 수 있어요</p>';
+  if(!DB_URL)h+='<p class="gbft">🧪 지금은 시험판이라 이 기기에서만 보여요</p>';
+  el.innerHTML=h;
+}
+
+/* ---------- 📮 건의함 (쓰기만 · 읽기는 운영자만) ---------- */
+let sgLast=0;
+function openSuggest(){openId='suggest';
+  const on=me&&S.oath&&S.oath[me.id]&&typeof S.oath[me.id].name==='string'?S.oath[me.id].name.slice(0,10):'';
+  openModal('📮 콕소리 건의함',`<div id="sgBody"><div class="mnote">📮 운영진에게 하고 싶은 말 · 아이디어 · 불편한 점을 보내 주세요.<br>🔒 <b>운영자만 볼 수 있어요.</b> 다른 멤버도, 보낸 나도 다시 볼 수 없어요.</div>
+    <form id="sgf" class="memof sgf" autocomplete="off">
+      <label for="sgN">실명 <em>필수 · 한글/영어 1~10자</em></label>
+      <input id="sgN" maxlength="10" placeholder="실명을 써 주세요" value="${esc(on)}" enterkeyhint="next">
+      <label for="sgT">하고 싶은 말 <em>최대 300자</em></label>
+      <textarea id="sgT" maxlength="300" rows="5" placeholder="운영자에게만 전달돼요"></textarea>
+      <div class="mfr"><small>보내는 닉네임: <b>${esc(me.name)}</b> (자동 첨부)</small><small id="sgC">0/300</small></div>
+      <div id="sgM" class="sgm"></div>
+      <button class="mbtn sgb" id="sgB">📮 운영자에게 보내기</button></form>
+    <p class="pii">⚠ 전화번호·주소·계좌 같은 개인정보는 쓰지 마세요</p>
+    ${DB_URL?'':'<p class="gbft">🧪 지금은 시험판이라 이 기기에만 저장돼요</p>'}</div>`);
+  $('#sgT').oninput=()=>{$('#sgC').textContent=$('#sgT').value.length+'/300';$('#sgT').classList.remove('bad');sgMsg('');};
+  $('#sgN').oninput=()=>{$('#sgN').classList.remove('bad');sgMsg('');};
+  $('#sgf').onsubmit=sgSend;
+}
+function sgMsg(t,ok){const m=$('#sgM');if(!m)return;m.textContent=t;m.classList.toggle('ok',!!ok);}
+async function sgSend(e){e.preventDefault();
+  const n=$('#sgN').value.replace(/\s+/g,' ').trim(),t=$('#sgT').value.trim().slice(0,300);
+  if(!n){$('#sgN').classList.add('bad');sgMsg('실명을 꼭 써 주세요 (1~10자)');$('#sgN').focus();ding(220);return;}
+  if(!SG_NAME.test(n)){$('#sgN').classList.add('bad');sgMsg('실명은 한글·영어로 1~10자까지 써 주세요');$('#sgN').focus();ding(220);return;}
+  if(!t){$('#sgT').classList.add('bad');sgMsg('하고 싶은 말을 써 주세요');$('#sgT').focus();ding(220);return;}
+  if(Date.now()-sgLast<20000){sgMsg('방금 보냈어요. 20초 뒤에 다시 보내 주세요');ding(220);return;}
+  const b=$('#sgB');b.disabled=true;sgMsg('보내는 중…',true);
+  const ok=await gaPost('/koksuggest',{id:me.id,nick:me.name,name:n,text:t,ts:SV});
+  if(!$('#sgB'))return;
+  if(!ok){b.disabled=false;sgMsg('보내지 못했어요. 잠시 뒤 다시 눌러 주세요 🔌');ding(220);return;}
+  sgLast=Date.now();ding(1046);toast('📮 건의를 보냈어요');
+  $('#sgBody').innerHTML='<div class="sgdone">✅ <b>건의를 보냈어요!</b><br>🔒 운영자만 볼 수 있어요<br><small>보낸 내용은 나도 다시 볼 수 없어요 · 고마워요 🙏</small></div><button class="mbtn sgb" id="sgAg" type="button">✍ 하나 더 쓰기</button>';
+  $('#sgAg').onclick=()=>{ding(660);openSuggest();};
+}
+
+/* ---------- 👑 운영자 로그인 (Firebase Auth · 구글) ---------- */
+const FB_READY=!!(typeof FIREBASE_CONFIG==='object'&&FIREBASE_CONFIG.apiKey&&FIREBASE_CONFIG.appId);
+const AU={st:'idle',user:null,err:''};
+const auOK=()=>GA_SIM||!!(AU.user&&ADMIN_UID&&AU.user.uid===ADMIN_UID);
+const arCan=()=>auOK()||!!(me&&isAdmin(me.id));
+function gaJs(src){return new Promise((res,rej)=>{const e=document.createElement('script');e.src=src;e.async=true;e.onload=res;e.onerror=()=>{e.remove();rej(new Error('load'));};document.head.appendChild(e);});}
+let fbP=null;
+function fbInit(){
+  if(!FB_READY)return Promise.reject(new Error('off'));
+  if(!fbP)fbP=(async()=>{const B='https://www.gstatic.com/firebasejs/10.14.1/';
+    if(!(window.firebase&&window.firebase.auth)){await gaJs(B+'firebase-app-compat.js');await gaJs(B+'firebase-auth-compat.js');}
+    const fb=window.firebase;if(!fb.apps.length)fb.initializeApp(FIREBASE_CONFIG);
+    const A=fb.auth();try{await A.getRedirectResult();}catch(e){}
+    await new Promise(r=>{let done=false;A.onAuthStateChanged(x=>{AU.user=x||null;AU.st='idle';if(!done){done=true;r();}else if(openId==='admroom'){admRender();if(arCan())arLoad();}});});
+    return A;})().catch(e=>{fbP=null;throw e;});
+  return fbP;
+}
+async function auTok(){if(GA_SIM||!AU.user)return '';try{return await AU.user.getIdToken();}catch(e){return '';}}
+async function admLogin(){
+  AU.err='';AU.st='busy';admRender();
+  try{const A=await fbInit(),P=new window.firebase.auth.GoogleAuthProvider();P.setCustomParameters({prompt:'select_account'});
+    try{await A.signInWithPopup(P);}
+    catch(e){const c=(e&&e.code)||'';if(c==='auth/popup-blocked'||c==='auth/operation-not-supported-in-this-environment'){await A.signInWithRedirect(P);return;}throw e;}
+    AU.user=A.currentUser||null;
+  }catch(e){const c=(e&&e.code)||'';
+    AU.err=c==='auth/popup-closed-by-user'||c==='auth/cancelled-popup-request'?'로그인 창이 닫혔어요. 다시 눌러 주세요'
+      :c==='auth/unauthorized-domain'?'이 주소는 아직 로그인 허용 목록(승인된 도메인)에 없어요'
+      :e&&e.message==='load'?'로그인 도구를 못 불러왔어요 (인터넷 확인)':'로그인이 안 됐어요 ('+(c||'오류')+')';}
+  AU.st='idle';admRender();if(arCan())arLoad();
+}
+async function admLogout(){try{const A=await fbInit();await A.signOut();}catch(e){}AU.user=null;AR.sg=null;admRender();}
+
+/* ---------- 👑 운영자의 방 ---------- */
+const AR={sg:null,names:null,guest:null,err:'',busy:false};
+function openAdmRoom(){openId='admroom';
+  openModal('👑 운영자의 방','<div id="arBody"></div>');admRender();
+  if(FB_READY&&!GA_SIM&&!AU.user)fbInit().then(()=>{if(openId==='admroom'){admRender();if(arCan())arLoad();}},()=>{});
+  if(arCan())arLoad();
+}
+async function arLoad(){
+  if(AR.busy)return;AR.busy=true;AR.err='';
+  try{
+    const [nm,gu]=await Promise.all([gaGet('names'),gaGet('guest')]);
+    AR.names=nm&&typeof nm==='object'?nm:{};AR.guest=gu&&typeof gu==='object'?gu:{};
+    if(!DB_URL){const K=keyLocal();if(K.names)AR.names=Object.assign({},K.names,AR.names);}
+    if(auOK()){const tk=await auTok();AR.sg=await gaGet('/koksuggest',tk)||{};}
+  }catch(e){AR.err='불러오기가 안 됐어요 ('+(e&&e.message||'오류')+')';}
+  AR.busy=false;if(openId==='admroom')admRender();
+}
+function arMembers(){
+  const P=S.players||{},N=AR.names||{},G=AR.guest||{},M={};
+  const add=(id,nick)=>{if(!/^[a-z0-9]{6,24}$/.test(id))return;const m=M[id]||(M[id]={id,nick:''});if(!m.nick&&typeof nick==='string')m.nick=nick;};
+  Object.keys(G).forEach(id=>add(id,G[id]&&G[id].nick));
+  Object.keys(P).forEach(id=>add(id,P[id]&&P[id].nick));
+  Object.keys(N).forEach(n=>{if(typeof N[n]==='string')add(N[n],n);});
+  return Object.values(M).map(m=>{const g=G[m.id]||{},p=P[m.id]||{};
+    const nk=Object.keys(N).find(n=>N[n]===m.id);
+    return Object.assign(m,{nick:nk||m.nick||'?',ts:typeof p.ts==='number'?p.ts:0,lastDay:g.lastDay||'',firstDay:g.firstDay||'',days:typeof g.days==='number'?g.days:0,oath:isOath(m.id)});})
+    .sort((a,b)=>(b.ts||0)-(a.ts||0)||String(b.lastDay).localeCompare(String(a.lastDay)));
+}
+function admRender(){
+  const el=$('#arBody');if(!el)return;const em=AU.user?esc(AU.user.email||'구글 계정'):'';
+  let h='<div class="arlog">';
+  if(GA_SIM)h+='🧪 <b>운영자 흉내 모드</b><br><small>시험판(?db=local&amp;admsim=1) 화면 확인용 · 진짜 로그인 아님</small>';
+  else if(!FB_READY)h+='🔧 <b>운영자 로그인 준비 중</b><br><small>구글 로그인 설정이 끝나면 여기서 운영자 로그인을 할 수 있어요</small>';
+  else if(AU.st==='busy')h+='⏳ 구글 로그인 중…';
+  else if(!AU.user)h+='🔒 <b>운영자 전용 방</b><br><small>운영자 구글 계정으로 로그인해야 건의함을 볼 수 있어요</small><button class="mbtn" id="arIn" type="button">🔐 구글로 운영자 로그인</button>';
+  else if(!ADMIN_UID)h+=`✅ 로그인됨 · ${em}<button id="arOut" type="button">로그아웃</button><br>🆔 내 UID: <code>${esc(AU.user.uid)}</code><button id="arCp" type="button">복사</button><br><small>이 UID를 코비서에게 알려 주세요 → 운영자로 등록되면 건의함이 열려요</small>`;
+  else if(AU.user.uid!==ADMIN_UID)h+=`⛔ 운영자 계정이 아니에요 · ${em}<button id="arOut" type="button">로그아웃</button>`;
+  else h+=`👑 <b>운영자 로그인됨</b> · ${em}<button id="arOut" type="button">로그아웃</button>`;
+  if(AU.err)h+=`<div class="arerr">${esc(AU.err)}</div>`;
+  h+='</div>';
+  if(!arCan()){el.innerHTML=h+'<p class="gb0">🔒 이 방은 운영자만 들어올 수 있어요.<br>건의는 📮 건의함에 남겨 주세요!</p>';arBind();return;}
+  if(AR.err)h+=`<p class="pii">${esc(AR.err)}</p>`;
+  // 👑 왕관(admin2)
+  if(auOK()){const A2=Object.keys(S.admin2||{}).filter(k=>S.admin2[k]===true),nk=id=>{const p=(S.players||{})[id];return p&&p.nick?nickCut(String(p.nick)):id.slice(0,6)+'…';};
+    h+=`<h3>👑 왕관 표시 <span class="arcnt">(새 방식 · 구글 로그인 운영자만 바꿈)</span></h3><div class="ara2">`
+      +(A2.length?A2.map(id=>`<span>👑${esc(nk(id))}</span><button type="button" data-a2x="${esc(id)}">떼기</button>`).join(''):'<small style="color:#888">아직 등록 없음 → 예전 방식(admin) 왕관이 보여요</small>')+'</div>'
+      +(me&&me.id&&!A2.includes(me.id)?`<button class="mbtn" type="button" id="arA2" style="width:100%">👑 지금 내 캐릭터(${esc(me.name)})에 왕관 달기</button>`:'');}
+  // 📮 건의함
+  const SG=Object.entries(AR.sg||{}).filter(([,m])=>m&&typeof m==='object'&&typeof m.text==='string').sort((a,b)=>(b[1].ts||0)-(a[1].ts||0));
+  h+=`<h3>📮 건의함 <span class="arcnt">${auOK()&&AR.sg?'('+SG.length+'개 · 최신순)':''}</span></h3>`;
+  if(!auOK())h+='<p class="gb0">🔐 건의함은 <b>구글 운영자 로그인</b> 뒤에만 열려요</p>';
+  else if(!AR.sg)h+='<p class="gb0">불러오는 중…</p>';
+  else if(!SG.length)h+='<p class="gb0">아직 건의가 없어요</p>';
+  else h+=SG.map(([k,m])=>`<div class="arsg"><div class="h"><span><b>${esc(String(m.name||'').slice(0,10))}</b> · ${esc(nickCut(String(m.nick||'?')))} · ${esc(tfmt(m.ts||0))}</span><button type="button" data-sgx="${esc(k)}">지우기</button></div><div class="t">${esc(String(m.text).slice(0,300))}</div></div>`).join('');
+  // 👥 들어왔던 사람 전체
+  const M=AR.names?arMembers():[];
+  h+=`<h3>👥 들어왔던 사람 전체 <span class="arcnt">${AR.names?'('+M.length+'명 · 최근 접속 순)':''}</span></h3>`;
+  if(!AR.names)h+='<p class="gb0">불러오는 중…</p>';
+  else h+=M.map(m=>`<div class="armem"><div class="n"><span>${esc(gbNick(m.id,m.nick))}</span><em class="${m.oath?'aro':'arx'}">${m.oath?'🖋 선서 ✔':'선서 ✖'}</em></div>`
+    +`<small>🔑 <code>${esc(m.id)}</code></small><small>마지막 접속 ${m.ts?esc(tfmt(m.ts)):dayMD(m.lastDay)} · 입장 ${m.days||0}일${m.firstDay?' · 처음 '+dayMD(m.firstDay):''}</small></div>`).join('')||'<p class="gb0">아직 없어요</p>';
+  h+='<p class="gbft">※ 열쇠 코드는 그 사람 캐릭터를 불러오는 코드예요. 밖으로 퍼지지 않게 조심해 주세요<br>※ 입장 일수는 방명록이 생긴 뒤(11/26~)부터 세요</p>';
+  h+='<button class="mbtn" type="button" id="arRe" style="width:100%;margin-top:8px">🔄 새로고침</button>';
+  el.innerHTML=h;arBind();
+}
+function arBind(){
+  const q=s=>$('#arBody '+s);
+  if(q('#arIn'))q('#arIn').onclick=()=>{ding(880);admLogin();};
+  if(q('#arOut'))q('#arOut').onclick=()=>{ding(440);admLogout();};
+  if(q('#arCp'))q('#arCp').onclick=async()=>{const ok=await copyTxt(AU.user.uid);q('#arCp').textContent=ok?'복사됨 ✔':'길게 눌러 복사';};
+  if(q('#arRe'))q('#arRe').onclick=()=>{ding(660);arLoad();};
+  if(q('#arA2'))q('#arA2').onclick=async()=>{const ok=await gaPut('admin2/'+me.id,true,await auTok());
+    if(ok){setLocal('admin2/'+me.id,true);changed();ding(1046);toast('👑 내 캐릭터에 왕관을 달았어요');}else toast('왕관 달기가 안 됐어요 (규칙·로그인 확인)');admRender();};
+  $$('#arBody [data-a2x]').forEach(b=>b.onclick=async()=>{if(!b.dataset.ok){b.dataset.ok='1';b.textContent='정말?';return;}
+    const id=b.dataset.a2x,ok=await gaPut('admin2/'+id,null,await auTok());if(ok){setLocal('admin2/'+id,null);changed();toast('왕관을 뗐어요');}else toast('안 됐어요');admRender();});
+  $$('#arBody [data-sgx]').forEach(b=>b.onclick=async()=>{if(!b.dataset.ok){b.dataset.ok='1';b.textContent='한 번 더 누르면 지워요';return;}
+    const k=b.dataset.sgx,ok=await gaPut('/koksuggest/'+k,null,await auTok());if(ok){if(AR.sg)delete AR.sg[k];toast('건의를 지웠어요');}else toast('안 지워졌어요');admRender();});
+}
 function tfmt(t){const d=new Date(t),n=new Date(),p=v=>String(v).padStart(2,'0');return (d.toDateString()===n.toDateString()?'':`${d.getMonth()+1}/${d.getDate()} `)+p(d.getHours())+':'+p(d.getMinutes());}
 function renderChatList(){
   const el=$('#cl');if(!el)return;el.textContent='';const arr=withActs(chatArr());
@@ -2740,7 +3024,7 @@ function HELP(welcome){
   const touch=!$('#pad').hidden;
   return (welcome?'':'🗺 <b>콕소리 마을 사용법</b><br>')
     +(touch?'· 가고 싶은 곳을 <b>톡</b> 누르면 걸어가 (왼쪽 아래 ▲▼◀▶ 꾹 눌러도 OK)':'· <b>방향키 / WASD</b> 로 걷기 · 가고 싶은 곳을 <b>클릭</b>해도 걸어가')
-    +'<br>· 건물 앞에 서면 안이 열려 (🖋 참석의 방 · 📅 일정 · 🚗 카풀 · ♨ 노천수다탕(자유 대화) · 📌 쪽지판 · ♨ 온수풀(뭐 하고 놀지) · 🔥 건식사우나(뭐 먹지) · 🎰 사설도박장(미니게임))<br>· 아래 💬 칸에 쓰면 내 머리 위 말풍선 + 모두에게 채팅<br>· 친구 캐릭터를 톡 누르면 🤫 <b>귓속말</b>(1:1 대화) · 받은 귓속말은 위 🤫 버튼 (👑운영자는 모든 귓속말을 볼 수 있어요)<br>· 💃 채팅칸 위 <b>행동 버튼</b>을 누르면 내 캐릭터가 움직여! 공간마다 달라 (PC는 숫자키 1~7)<br>· 보라 이름표 <b>NPC</b> 5명 = 마을 단속반들. 누르면(PC는 옆에서 Enter) <b>1박 2일 요약</b> + 참가 확정 방법'
+    +'<br>· 건물 앞에 서면 안이 열려 (🖋 참석의 방 · 📅 일정 · 🚗 카풀 · ♨ 노천수다탕(자유 대화) · 📌 쪽지판 · ♨ 온수풀(뭐 하고 놀지) · 🔥 건식사우나(뭐 먹지) · 🎰 사설도박장(미니게임) · 📖 방명록 · 📮 건의함(운영자만 읽어요))<br>· 아래 💬 칸에 쓰면 내 머리 위 말풍선 + 모두에게 채팅<br>· 친구 캐릭터를 톡 누르면 🤫 <b>귓속말</b>(1:1 대화) · 받은 귓속말은 위 🤫 버튼 (👑운영자는 모든 귓속말을 볼 수 있어요)<br>· 💃 채팅칸 위 <b>행동 버튼</b>을 누르면 내 캐릭터가 움직여! 공간마다 달라 (PC는 숫자키 1~7)<br>· 보라 이름표 <b>NPC</b> 5명 = 마을 단속반들. 누르면(PC는 옆에서 Enter) <b>1박 2일 요약</b> + 참가 확정 방법'
     +(!welcome&&me&&me.id?`<div class="devid">🔑 내 열쇠 코드: <code>${esc(me.id)}</code><button type="button" id="cpid">복사</button><span class="kd">다른 브라우저·다른 폰에서 이 코드로 내 캐릭터를 불러올 수 있어요. 남에게 알려 주지 마세요</span></div>`:'');
 }
 function enter(){
@@ -2749,7 +3033,7 @@ function enter(){
   openOv('#town');resize();held=null;
   $('#hudName').textContent=me.name;$('#town .hud').classList.remove('adm');$('#hudDd').textContent='콕대위 1박2일 '+dday();drawTo($('#hudAv'),me.av);
   lastSave=0;refresh();
-  NET.claimed=false;netPos=pl.x+','+pl.y+','+pl.dir;lastBeat=Date.now();if(DB_URL)claimMine();
+  NET.claimed=false;netPos=pl.x+','+pl.y+','+pl.dir;lastBeat=Date.now();if(DB_URL)claimMine().then(()=>{if(NET.claimed)setTimeout(()=>gbVisit(0),1500);});else gbVisit(0);
   keyLocalSave();
   try{if(!localStorage.getItem('kokf_keyhint')){localStorage.setItem('kokf_keyhint','1');setTimeout(()=>{const e=$('#toast');toast('🔑 내 열쇠 코드는 오른쪽 위 ? 에서 확인!');clearTimeout(e._t);e._t=setTimeout(()=>e.classList.remove('on'),4500);},1800);}}catch(e){}
   if(!localStorage.getItem('kokf_seen')){localStorage.setItem('kokf_seen','1');sayBox(`▶ <b>${esc(me.name)}</b> 요원, 콕소리 마을에 온 걸 환영해!<br>`+HELP(true));}
@@ -2762,7 +3046,7 @@ requestAnimationFrame(loop);
 (document.fonts?document.fonts.load('12px Galmuri11'):Promise.resolve()).finally(()=>{if($('#char').classList.contains('on')&&kTab==='make')renderMake();});
 return {openChar,enter,pickSel,safeAv,preset:i=>copyAv(PRESETS[i%PRESETS.length].av),count:()=>PRESETS.length,
   pos:()=>({x:pl.x,y:pl.y,px:Math.round(pl.px),py:Math.round(pl.py),dir:pl.dir}),
-  place:openPlace,chat:sendChat,setLog,dm:(o,t)=>{openDM(o);return sendDM(o,t);},dmbox:openDMBox,dmall:openDMAll,dms:()=>({dm:S.dm,dmbox:S.dmbox,unread:dmUnread()}),dbg:c=>DB_URL?null:eval(c),play:()=>({view:CAS.view,rank:S.rank,talk:S.talk,champ:champ()}),act:doAct,acts:()=>({zone:curZone(),hd:myHd,mine:myAct.c,run:Object.entries(ACTRUN).map(([id,r])=>({id,c:r.c,ago:Math.round(serverNow()-r.t)})),log:ACTLOG.map(a=>a.text),bar:barList(curZone()).map(a=>a[0])}),dbgSet:(p,v)=>{if(!DB_URL){setLocal(p,v);changed();}},admin:()=>({me:!!(me&&isAdmin(me.id)),ids:Object.keys(S.admin||{})}),walk:(x,y)=>goTo(x,y,TRIG[x+','+y]||null),oath:()=>({n:oathN(),mine:myOath(),view:oathView}),net:()=>({live:NET.live,skew:NET.skew,claimed:NET.claimed,others:others().map(([id,p,sl])=>({id,nick:p.nick,x:p.x,y:p.y,sleep:sl})),npc:npcN(),id:me&&me.id}),
+  place:openPlace,chat:sendChat,setLog,ga:()=>({day:kstDay(serverNow()),sim:GA_SIM,fb:FB_READY,ok:auOK(),can:arCan()}),dm:(o,t)=>{openDM(o);return sendDM(o,t);},dmbox:openDMBox,dmall:openDMAll,dms:()=>({dm:S.dm,dmbox:S.dmbox,unread:dmUnread()}),dbg:c=>DB_URL?null:eval(c),play:()=>({view:CAS.view,rank:S.rank,talk:S.talk,champ:champ()}),act:doAct,acts:()=>({zone:curZone(),hd:myHd,mine:myAct.c,run:Object.entries(ACTRUN).map(([id,r])=>({id,c:r.c,ago:Math.round(serverNow()-r.t)})),log:ACTLOG.map(a=>a.text),bar:barList(curZone()).map(a=>a[0])}),dbgSet:(p,v)=>{if(!DB_URL){setLocal(p,v);changed();}},admin:()=>({me:!!(me&&isAdmin(me.id)),ids:Object.keys(S.admin||{})}),walk:(x,y)=>goTo(x,y,TRIG[x+','+y]||null),oath:()=>({n:oathN(),mine:myOath(),view:oathView}),net:()=>({live:NET.live,skew:NET.skew,claimed:NET.claimed,others:others().map(([id,p,sl])=>({id,nick:p.nick,x:p.x,y:p.y,sleep:sl})),npc:npcN(),id:me&&me.id}),
   scr:(tx,ty)=>[Math.round((tx*TS+8-camX)*VS),Math.round((ty*TS+8-camY)*VS)],open:()=>openId};
 })();
 
